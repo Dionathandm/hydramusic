@@ -62,16 +62,6 @@ header{
 header img{height:28px}
 header span{font-weight:bold}
 
-/* INSTALL BANNER */
-#installBanner{
-  background:var(--verde-fraco);
-  color:#000;
-  padding:14px;
-  text-align:center;
-  font-weight:bold;
-  cursor:pointer;
-}
-
 /* CONTEÚDO */
 main{
   padding:16px;
@@ -109,7 +99,7 @@ main{
 /* PLAYER */
 #player{
   position:fixed;
-  bottom:0;
+  bottom:60px;
   left:0;
   right:0;
   background:rgba(0,0,0,.85);
@@ -117,6 +107,7 @@ main{
   display:none;
   align-items:center;
   gap:10px;
+  z-index:998;
 }
 #player button{
   background:var(--verde-fraco);
@@ -124,6 +115,30 @@ main{
   padding:10px 14px;
   border-radius:8px;
   font-weight:bold;
+}
+
+/* BOTÃO INSTALL FIXO EMBAIXO */
+#btnInstall{
+  display:none;
+  position:fixed;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--verde-fraco);
+  color:#000;
+  padding:14px 24px;
+  font-weight:bold;
+  border-radius:12px;
+  cursor:pointer;
+  z-index:999;
+  animation:shake 1.5s infinite alternate;
+  box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+@keyframes shake{
+  0%{transform:translateX(-50%) rotate(-2deg);}
+  50%{transform:translateX(-50%) rotate(2deg);}
+  100%{transform:translateX(-50%) rotate(-2deg);}
 }
 </style>
 </head>
@@ -139,8 +154,6 @@ main{
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
   <span>HydraMusic</span>
 </header>
-
-<div id="installBanner">📥 Instalar HydraMusic</div>
 
 <main>
   <div class="section-title">Recomendadas</div>
@@ -162,10 +175,14 @@ main{
   </div>
 </main>
 
+<!-- PLAYER -->
 <div id="player">
   <button onclick="stop()">⏹</button>
   <span id="now">Nenhuma música</span>
 </div>
+
+<!-- BOTÃO BAIXAR -->
+<div id="btnInstall">📥 Baixar HydraMusic</div>
 
 <script>
 /* SPLASH */
@@ -173,10 +190,14 @@ setTimeout(()=>{
   document.getElementById("splash").classList.add("fade");
 },2500);
 
-/* PEDIR NOTIFICAÇÃO AUTOMÁTICO */
+/* PEDIR NOTIFICAÇÃO AUTOMÁTICA */
 window.addEventListener("load",()=>{
   if("Notification"in window){
-    Notification.requestPermission();
+    Notification.requestPermission().then(p=>{
+      if(p==="granted"){
+        new Notification("HydraMusic",{body:"Notificações ativadas 🎶"});
+      }
+    });
   }
 });
 
@@ -189,18 +210,18 @@ function stop(){
   document.getElementById("player").style.display="none";
 }
 
-/* INSTALL */
+/* INSTALL PWA */
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
   deferredPrompt=e;
 });
-document.getElementById("installBanner").onclick=async()=>{
+document.getElementById("btnInstall").onclick=async()=>{
   if(!deferredPrompt)return;
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt=null;
-  document.getElementById("installBanner").style.display="none";
+  document.getElementById("btnInstall").style.display="none";
 };
 </script>
 
