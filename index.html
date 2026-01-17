@@ -3,135 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <title>HydraMusic</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="manifest" href="manifest.json">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA INLINE -->
+<link rel="manifest" href="data:application/json,{
+  &quot;name&quot;:&quot;HydraMusic&quot;,
+  &quot;short_name&quot;:&quot;HydraMusic&quot;,
+  &quot;start_url&quot;:&quot;.&quot;,
+  &quot;display&quot;:&quot;standalone&quot;,
+  &quot;background_color&quot;:&quot;#1f6f43&quot;,
+  &quot;theme_color&quot;:&quot;#1f6f43&quot;
+}">
+
 <meta name="theme-color" content="#1f6f43">
 
 <style>
-html, body {
-  margin: 0;
-  background: #1f6f43;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  overflow-x: hidden;
-  height: 100%;
+:root{
+  --verde-forte:#1f6f43;
+  --verde-fraco:#2fd07f;
 }
 
-/* SPLASH (IGUAL HYDRAFILMES) */
-#introScreen {
-  position: fixed;
-  inset: 0;
-  background: #1f6f43;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+
+body{
+  background:var(--verde-forte);
+  color:#fff;
+  min-height:100vh;
 }
-#introScreen img {
-  width: 60%;
-  max-width: 260px;
+
+/* SPLASH */
+#intro{
+  position:fixed;
+  inset:0;
+  background:var(--verde-forte);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  animation:fadeOut 1s ease forwards;
+  animation-delay:2.5s;
+}
+#intro img{
+  width:60%;
+  max-width:220px;
+  background:transparent;
+}
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden}
 }
 
 /* HEADER */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-  background: rgba(31,111,67,.92);
-  z-index: 9999;
+header{
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(31,111,67,.9);
 }
-header img {
-  height: 26px;
+header img{
+  height:28px;
 }
 
-/* MENU */
-.menu a {
-  color: #d9f3e4;
-  margin: 0 10px;
-  font-size: 14px;
-  text-decoration: none;
-}
-.menu a.ativo {
-  color: #fff;
-  border-bottom: 2px solid #9affc7;
-  padding-bottom: 4px;
-}
-
-/* HERO 16:9 (IGUAL FILMES) */
-.hero {
-  margin-top: 56px;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: url("https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3") center/contain no-repeat;
-  position: relative;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(31,111,67,.9), transparent);
+/* HERO */
+.hero{
+  width:100%;
+  height:45vh;
+  background:url("https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png") center/contain no-repeat;
 }
 
 /* CONTEÚDO */
-main {
-  padding-top: 20px;
+main{
+  padding:20px;
+  text-align:center;
 }
-section { display: none; }
-section.ativo { display: block; }
+h1{margin-bottom:10px}
+p{opacity:.9;margin-bottom:20px}
 
-h2.categoria {
-  margin: 16px;
-  border-left: 4px solid #9affc7;
-  padding-left: 8px;
+/* BOTÕES */
+.btn{
+  width:100%;
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:8px;
+  border:none;
+  background:var(--verde-fraco);
+  color:#000;
+  font-weight:bold;
+  cursor:pointer;
 }
+.btn:active{transform:scale(.97)}
 
-/* CARROSSEL */
-.carousel {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding: 0 16px 24px;
-}
-.carousel::-webkit-scrollbar { display: none; }
-
-.musica {
-  flex: 0 0 80%;
-  background: rgba(0,0,0,.25);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-}
-
-/* PLAYER */
-#audioPlayer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,.6);
-  padding: 12px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-/* BOTÃO INSTALL (SEM BORDA) */
-#btnInstall {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2fd07f;
-  color: #000;
-  padding: 12px 22px;
-  border-radius: 8px;
-  display: none;
-  z-index: 9999;
+/* INSTALL */
+#btnInstall{
+  display:none;
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:999;
 }
 </style>
 </head>
@@ -139,73 +108,64 @@ h2.categoria {
 <body>
 
 <!-- SPLASH -->
-<div id="introScreen">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3">
+<div id="intro">
+  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </div>
 
+<!-- HEADER -->
 <header>
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3">
-  <nav class="menu">
-    <a class="ativo" onclick="trocar('inicio',this)">Início</a>
-    <a onclick="trocar('categorias',this)">Categorias</a>
-    <a onclick="trocar('biblioteca',this)">Biblioteca</a>
-  </nav>
+  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </header>
 
+<!-- HERO -->
 <div class="hero"></div>
 
+<!-- CONTEÚDO -->
 <main>
+  <h1>HydraMusic</h1>
+  <p>Ouça músicas gratuitamente direto no app</p>
 
-<section id="inicio" class="ativo">
-<h2 class="categoria">Em destaque</h2>
-<div class="carousel">
-  <div class="musica">🎵 Música em breve</div>
-</div>
-</section>
-
-<section id="categorias">
-<h2 class="categoria">Funk</h2>
-<div class="carousel"><div class="musica">Em breve</div></div>
-</section>
-
-<section id="biblioteca">
-  <div style="padding:80px;text-align:center;color:#d9f3e4">
-    Sua biblioteca aparecerá aqui.
-  </div>
-</section>
-
+  <button class="btn" onclick="ativarNotificacao()">🔔 Ativar notificações</button>
+  <button class="btn">🎧 Explorar músicas</button>
 </main>
 
-<div id="btnInstall">📥 Instalar HydraMusic</div>
+<!-- BOTÃO INSTALL -->
+<button id="btnInstall" class="btn">📥 Baixar HydraMusic</button>
 
 <script>
-setTimeout(()=>introScreen.style.display="none",2500);
+/* SPLASH */
+setTimeout(()=>{
+  document.getElementById("intro").style.display="none";
+},3500);
 
-function trocar(id,el){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("ativo"));
-  document.getElementById(id).classList.add("ativo");
-  document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("ativo"));
-  el.classList.add("ativo");
+/* NOTIFICAÇÃO */
+function ativarNotificacao(){
+  if(!("Notification"in window)){
+    alert("Notificação não suportada");
+    return;
+  }
+  Notification.requestPermission().then(p=>{
+    if(p==="granted"){
+      new Notification("HydraMusic",{body:"Notificações ativadas 🎶"});
+    }
+  });
 }
 
-/* INSTALL */
+/* INSTALL PWA */
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt", e => {
+window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
-  deferredPrompt = e;
-  btnInstall.style.display = "block";
+  deferredPrompt=e;
+  document.getElementById("btnInstall").style.display="block";
 });
-btnInstall.onclick = async () => {
-  if(!deferredPrompt) return;
-  deferredPrompt.prompt();
-  deferredPrompt = null;
-  btnInstall.style.display = "none";
-};
 
-/* SW */
-if("serviceWorker" in navigator){
-  navigator.serviceWorker.register("sw.js");
-}
+document.getElementById("btnInstall").onclick=async()=>{
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  document.getElementById("btnInstall").style.display="none";
+};
 </script>
 
 </body>
