@@ -5,7 +5,6 @@
 <title>HydraMusic</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- PWA INLINE -->
 <link rel="manifest" href="data:application/json,{
   &quot;name&quot;:&quot;HydraMusic&quot;,
   &quot;short_name&quot;:&quot;HydraMusic&quot;,
@@ -14,7 +13,6 @@
   &quot;background_color&quot;:&quot;#1f6f43&quot;,
   &quot;theme_color&quot;:&quot;#1f6f43&quot;
 }">
-
 <meta name="theme-color" content="#1f6f43">
 
 <style>
@@ -40,13 +38,13 @@ body{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  animation:fadeOut 1s ease forwards;
-  animation-delay:2.5s;
 }
 #intro img{
   width:60%;
   max-width:220px;
-  background:transparent;
+}
+.fadeOut{
+  animation:fadeOut 1s forwards;
 }
 @keyframes fadeOut{
   to{opacity:0;visibility:hidden}
@@ -93,6 +91,13 @@ p{opacity:.9;margin-bottom:20px}
 }
 .btn:active{transform:scale(.97)}
 
+/* APP AREA */
+#app{
+  display:none;
+  padding:40px 20px;
+  text-align:center;
+}
+
 /* INSTALL */
 #btnInstall{
   display:none;
@@ -112,43 +117,59 @@ p{opacity:.9;margin-bottom:20px}
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </div>
 
-<!-- HEADER -->
 <header>
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </header>
 
-<!-- HERO -->
-<div class="hero"></div>
+<div id="home">
+  <div class="hero"></div>
 
-<!-- CONTEÚDO -->
-<main>
-  <h1>HydraMusic</h1>
-  <p>Ouça músicas gratuitamente direto no app</p>
+  <main>
+    <h1>HydraMusic</h1>
+    <p>Ouça músicas gratuitamente direto no app</p>
 
-  <button class="btn" onclick="ativarNotificacao()">🔔 Ativar notificações</button>
-  <button class="btn">🎧 Explorar músicas</button>
-</main>
+    <button class="btn" onclick="ativarNotificacao()">🔔 Ativar notificações</button>
+    <button class="btn" onclick="entrarApp()">🎧 Explorar músicas</button>
+  </main>
+</div>
 
-<!-- BOTÃO INSTALL -->
+<!-- APP -->
+<div id="app">
+  <h2>🎶 Bem-vindo ao HydraMusic</h2>
+  <p>Área principal do aplicativo</p>
+</div>
+
 <button id="btnInstall" class="btn">📥 Baixar HydraMusic</button>
 
 <script>
 /* SPLASH */
 setTimeout(()=>{
-  document.getElementById("intro").style.display="none";
-},3500);
+  document.getElementById("intro").classList.add("fadeOut");
+},2500);
+
+/* PEDIR NOTIFICAÇÃO AUTOMÁTICA AO ABRIR */
+window.addEventListener("load",()=>{
+  if("Notification"in window){
+    Notification.requestPermission();
+  }
+});
 
 /* NOTIFICAÇÃO */
 function ativarNotificacao(){
-  if(!("Notification"in window)){
-    alert("Notificação não suportada");
-    return;
-  }
+  if(!("Notification"in window)) return;
   Notification.requestPermission().then(p=>{
     if(p==="granted"){
       new Notification("HydraMusic",{body:"Notificações ativadas 🎶"});
     }
   });
+  mostrarInstall();
+}
+
+/* ENTRAR NO APP */
+function entrarApp(){
+  document.getElementById("home").style.display="none";
+  document.getElementById("app").style.display="block";
+  mostrarInstall();
 }
 
 /* INSTALL PWA */
@@ -156,8 +177,13 @@ let deferredPrompt;
 window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
   deferredPrompt=e;
-  document.getElementById("btnInstall").style.display="block";
 });
+
+function mostrarInstall(){
+  if(deferredPrompt){
+    document.getElementById("btnInstall").style.display="block";
+  }
+}
 
 document.getElementById("btnInstall").onclick=async()=>{
   if(!deferredPrompt)return;
