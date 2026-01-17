@@ -1,0 +1,22 @@
+{
+  "name": "HydraMusic",
+  "short_name": "HydraMusic",
+  "description": "Ouça músicas grátis direto no app",
+  "start_url": "/hydramusic/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff0000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/QjXrP5BZ/file-00000000c2c4720e86cc663ff53d7a13.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.ibb.co/QjXrP5BZ/file-00000000c2c4720e86cc663ff53d7a13.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
