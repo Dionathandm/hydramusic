@@ -11,9 +11,10 @@
 
 <style>
 :root{
+  --verde-forte:#1f6f43;
+  --verde-fraco:#2fd07f;
   --bg:#0f3d28;
   --card:#1f6f43;
-  --accent:#2fd07f;
 }
 
 *{
@@ -62,7 +63,7 @@ header{
 }
 header img{height:32px}
 
-/* LISTA */
+/* LISTA DE MÚSICAS */
 main{
   padding:16px;
 }
@@ -77,6 +78,10 @@ h2{
   padding:10px;
   margin-bottom:10px;
   cursor:pointer;
+  transition:transform .2s;
+}
+.music:hover{
+  transform:scale(1.03);
 }
 .music img{
   width:48px;
@@ -98,9 +103,11 @@ h2{
 #audioPlayer{
   width:100%;
   margin-top:15px;
+  border-radius:10px;
+  outline:none;
 }
 
-/* BOTÃO INSTALL */
+/* INSTALL */
 #installBar{
   position:fixed;
   bottom:0;
@@ -118,7 +125,7 @@ h2{
   100%{transform:translateY(0)}
 }
 #installBar button{
-  background:var(--accent);
+  background:var(--verde-fraco);
   border:none;
   padding:14px;
   width:95%;
@@ -160,6 +167,14 @@ h2{
     </div>
   </div>
 
+  <div class="music" onclick="play('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3','Música 3')">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div>
+      <strong>Música 3</strong>
+      <small>HydraMusic</small>
+    </div>
+  </div>
+
   <audio id="audioPlayer" controls></audio>
 </main>
 
@@ -176,15 +191,15 @@ setTimeout(()=>{
 },2500);
 
 /* PLAYER */
-function play(src){
+function play(src,nome){
   const audio=document.getElementById("audioPlayer");
   audio.src=src;
   audio.play();
 }
 
-/* NOTIFICAÇÃO */
+/* NOTIFICAÇÃO AUTOMÁTICA */
 function pedirNotificacao(){
-  if("Notification"in window){
+  if("Notification" in window){
     Notification.requestPermission().then(p=>{
       if(p==="granted"){
         new Notification("HydraMusic 🎶",{body:"Bem-vindo ao HydraMusic!"});
@@ -193,7 +208,7 @@ function pedirNotificacao(){
   }
 }
 
-/* INSTALL */
+/* INSTALL PWA */
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
@@ -209,6 +224,17 @@ document.getElementById("btnInstall").onclick=async()=>{
   await deferredPrompt.userChoice;
   deferredPrompt=null;
 };
+</script>
+
+<!-- SERVICE WORKER -->
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Service Worker registrado"))
+      .catch(err => console.log("SW erro:", err));
+  });
+}
 </script>
 
 </body>
