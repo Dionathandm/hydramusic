@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>HydraMusic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff0000">
+
+<style>
+html, body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/* SPLASH */
+#introScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+#introScreen img {
+  max-width: 80%;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 56px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  padding: 0 16px;
+  background: transparent;
+  z-index: 9999;
+  transition: background .3s;
+}
+header.scrolled {
+  background: rgba(0,0,0,.95);
+}
+header img {
+  height: 28px;
+}
+
+/* MENU */
+.menu {
+  justify-self: center;
+}
+.menu a {
+  color: #bdbdbd;
+  margin: 0 12px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.menu a.ativo {
+  color: #fff;
+  border-bottom: 2px solid red;
+  padding-bottom: 4px;
+}
+
+/* HERO */
+.hero {
+  height: 85vh;
+  background: url("https://i.ibb.co/QjXrP5BZ/file-00000000c2c4720e86cc663ff53d7a13.png") center/cover no-repeat;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(to top, #000, transparent);
+}
+.hero-content {
+  position: absolute;
+  bottom: 80px;
+  left: 16px;
+}
+.hero-content h1 {
+  margin-bottom: 12px;
+}
+.hero .btn {
+  background: red;
+  padding: 10px 20px;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* SEÇÕES */
+main {
+  padding-top: 20px;
+}
+section {
+  display: none;
+}
+section.ativo {
+  display: block;
+}
+
+/* CATEGORIAS */
+h2.categoria {
+  margin: 16px;
+  border-left: 4px solid red;
+  padding-left: 8px;
+}
+
+/* CARROSSEL */
+.carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 0 16px 24px;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* CARD MÚSICA */
+.musica {
+  flex: 0 0 70%;
+  background: #111;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.musica h3 {
+  margin: 10px 0 5px;
+}
+.musica p {
+  color: #aaa;
+  font-size: 13px;
+}
+
+/* PLAYER */
+#audioPlayer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111;
+  padding: 12px;
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+#audioPlayer button {
+  background: red;
+  border: none;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+#audioPlayer span {
+  font-size: 14px;
+}
+
+/* INSTALL */
+#btnInstall {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+  padding: 12px 22px;
+  border-radius: 8px;
+  display: none;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SPLASH -->
+<div id="introScreen">
+  <img src="https://i.ibb.co/QjXrP5BZ/file-00000000c2c4720e86cc663ff53d7a13.png">
+</div>
+
+<header id="topo">
+  <img src="https://i.ibb.co/QjXrP5BZ/file-00000000c2c4720e86cc663ff53d7a13.png">
+  <nav class="menu">
+    <a class="ativo" onclick="trocar('inicio',this)">Início</a>
+    <a onclick="trocar('categorias',this)">Categorias</a>
+    <a onclick="trocar('biblioteca',this)">Biblioteca</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>HydraMusic</h1>
+    <p>Ouça músicas grátis direto no app</p>
+    <a class="btn">🎧 Explorar</a>
+  </div>
+</div>
+
+<main>
+
+<section id="inicio" class="ativo">
+
+<h2 class="categoria">Em destaque</h2>
+<div class="carousel">
+  <div class="musica">
+    <h3>Música em breve</h3>
+    <p>Artista</p>
+  </div>
+</div>
+
+</section>
+
+<section id="categorias">
+
+<h2 class="categoria">Funk</h2>
+<div class="carousel">
+  <div class="musica"><h3>Sem músicas</h3><p>Em breve</p></div>
+</div>
+
+<h2 class="categoria">Pagode</h2>
+<div class="carousel">
+  <div class="musica"><h3>Sem músicas</h3><p>Em breve</p></div>
+</div>
+
+<h2 class="categoria">Eletrônica</h2>
+<div class="carousel">
+  <div class="musica"><h3>Sem músicas</h3><p>Em breve</p></div>
+</div>
+
+<h2 class="categoria">Sertanejo</h2>
+<div class="carousel">
+  <div class="musica"><h3>Sem músicas</h3><p>Em breve</p></div>
+</div>
+
+</section>
+
+<section id="biblioteca">
+  <div style="padding:80px;text-align:center;color:#666">
+    Sua biblioteca aparecerá aqui.
+  </div>
+</section>
+
+</main>
+
+<!-- PLAYER -->
+<div id="audioPlayer">
+  <button onclick="fecharAudio()">⏹</button>
+  <span>Nenhuma música tocando</span>
+</div>
+
+<div id="btnInstall">📥 Baixar HydraMusic</div>
+
+<script>
+setTimeout(()=>introScreen.style.display="none",3000);
+
+window.addEventListener("scroll",()=>{
+  topo.classList.toggle("scrolled",scrollY>50);
+});
+
+function trocar(id,el){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("ativo"));
+  document.getElementById(id).classList.add("ativo");
+  document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("ativo"));
+  el.classList.add("ativo");
+}
+
+function fecharAudio(){
+  document.getElementById("audioPlayer").style.display="none";
+}
+
+/* INSTALL */
+let deferredPrompt;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btnInstall.style.display = "block";
+});
+btnInstall.onclick = async () => {
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  btnInstall.style.display = "none";
+};
+
+/* SERVICE WORKER */
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js");
+}
+</script>
+
+</body>
+    </html>
