@@ -8,12 +8,17 @@
 <meta name="theme-color" content="#1f6f43">
 
 <style>
+:root{
+  --verde-forte:#1f6f43;
+  --verde-fraco:#2b8a5a;
+  --verde-destaque:#2fd07f;
+}
+
 html, body {
   margin: 0;
-  background: #1f6f43;
+  background: var(--verde-forte);
   color: #fff;
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
   height: 100%;
 }
 
@@ -21,27 +26,21 @@ html, body {
 #introScreen {
   position: fixed;
   inset: 0;
-  background: #1f6f43;
+  background: var(--verde-forte);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
-  animation: fadeIn 1.5s ease forwards;
 }
 #introScreen img {
-  max-width: 65%;
+  width: 70%;
+  animation: splashFade 2.5s ease forwards;
 }
-.fadeOut {
-  animation: fadeOut 1s ease forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+@keyframes splashFade {
+  0% {opacity:0; transform:scale(.9)}
+  20% {opacity:1; transform:scale(1)}
+  80% {opacity:1}
+  100% {opacity:0}
 }
 
 /* HEADER */
@@ -50,143 +49,124 @@ header {
   top: 0;
   width: 100%;
   height: 56px;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
-  padding: 0 16px;
-  background: rgba(31,111,67,.85);
+  justify-content: space-between;
+  padding: 0 14px;
+  background: rgba(31,111,67,.9);
   z-index: 9999;
-  transition: background .3s;
-}
-header.scrolled {
-  background: rgba(31,111,67,.95);
 }
 header img {
-  height: 26px;
+  height: 28px;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+.header-actions button {
+  background: var(--verde-destaque);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* MENU */
 .menu {
-  justify-self: center;
+  position: fixed;
+  top: 56px;
+  width: 100%;
+  background: var(--verde-fraco);
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 10px 0;
 }
 .menu a {
   color: #d9f3e4;
-  margin: 0 12px;
   font-size: 14px;
-  cursor: pointer;
   text-decoration: none;
 }
 .menu a.ativo {
   color: #fff;
-  border-bottom: 2px solid #9affc7;
-  padding-bottom: 4px;
+  border-bottom: 2px solid var(--verde-destaque);
 }
 
 /* HERO */
 .hero {
-  height: 60vh;
-  background: url("https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png") center/contain no-repeat;
-  position: relative;
+  margin-top: 110px;
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url("https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3") center/auto 80% no-repeat;
 }
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(to top, #1f6f43, transparent);
-}
-.hero-content {
-  position: absolute;
-  bottom: 40px;
-  left: 16px;
-}
-.hero-content h1 {
-  margin-bottom: 8px;
+.hero h1 {
+  margin-top: 220px;
 }
 .hero .btn {
-  background: #2fd07f;
-  padding: 10px 20px;
-  border-radius: 6px;
+  margin-top: 10px;
+  background: var(--verde-destaque);
+  padding: 10px 24px;
+  border-radius: 8px;
   color: #000;
   text-decoration: none;
 }
 
-/* SEÇÕES */
+/* MAIN */
 main {
-  padding-top: 20px;
+  padding-bottom: 120px;
 }
-section {
-  display: none;
-}
-section.ativo {
-  display: block;
-}
+section {display:none;}
+section.ativo {display:block;}
 
-/* CATEGORIAS */
 h2.categoria {
-  margin: 16px;
-  border-left: 4px solid #9affc7;
-  padding-left: 8px;
+  margin: 20px;
+  border-left: 4px solid var(--verde-destaque);
+  padding-left: 10px;
 }
 
 /* CARROSSEL */
 .carousel {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   overflow-x: auto;
-  padding: 0 16px 24px;
+  padding: 0 20px 20px;
 }
-.carousel::-webkit-scrollbar {
-  display: none;
-}
+.carousel::-webkit-scrollbar {display:none;}
 
-/* CARD */
 .musica {
   flex: 0 0 70%;
   background: rgba(0,0,0,.25);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
   text-align: center;
-}
-.musica h3 {
-  margin: 10px 0 5px;
-}
-.musica p {
-  color: #cdeedc;
-  font-size: 13px;
 }
 
 /* PLAYER */
 #audioPlayer {
   position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   background: rgba(0,0,0,.6);
-  padding: 12px;
+  padding: 14px;
   display: none;
-  align-items: center;
-  gap: 10px;
-}
-#audioPlayer button {
-  background: #2fd07f;
-  border: none;
-  color: #000;
-  padding: 8px 12px;
-  border-radius: 6px;
+  justify-content: center;
+  gap: 12px;
 }
 
 /* INSTALL */
 #btnInstall {
   position: fixed;
-  bottom: 80px;
+  bottom: 90px;
   left: 50%;
   transform: translateX(-50%);
-  background: #2fd07f;
+  background: var(--verde-destaque);
   color: #000;
-  padding: 12px 22px;
-  border-radius: 8px;
+  padding: 12px 26px;
+  border-radius: 10px;
   display: none;
   z-index: 9999;
 }
@@ -197,76 +177,51 @@ h2.categoria {
 
 <!-- SPLASH -->
 <div id="introScreen">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3">
 </div>
 
-<header id="topo">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <nav class="menu">
-    <a class="ativo" onclick="trocar('inicio',this)">Início</a>
-    <a onclick="trocar('categorias',this)">Categorias</a>
-    <a onclick="trocar('biblioteca',this)">Biblioteca</a>
-  </nav>
+<header>
+  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png?v=3">
+  <div class="header-actions">
+    <button>🔔</button>
+    <button onclick="btnInstall.click()">⬇</button>
+  </div>
 </header>
 
+<nav class="menu">
+  <a class="ativo" onclick="trocar('inicio',this)">Início</a>
+  <a onclick="trocar('categorias',this)">Categorias</a>
+  <a onclick="trocar('biblioteca',this)">Biblioteca</a>
+</nav>
+
 <div class="hero">
-  <div class="hero-content">
-    <h1>HydraMusic</h1>
-    <p>Ouça músicas grátis direto no app</p>
-    <a class="btn">🎧 Explorar</a>
-  </div>
+  <h1>HydraMusic</h1>
+  <p>Ouça músicas grátis direto no app</p>
+  <a class="btn">🎧 Explorar</a>
 </div>
 
 <main>
-
 <section id="inicio" class="ativo">
-<h2 class="categoria">Em destaque</h2>
-<div class="carousel">
-  <div class="musica">
-    <h3>Música em breve</h3>
-    <p>Artista</p>
+  <h2 class="categoria">Em destaque</h2>
+  <div class="carousel">
+    <div class="musica">Música em breve</div>
   </div>
-</div>
 </section>
 
 <section id="categorias">
-<h2 class="categoria">Funk</h2>
-<div class="carousel"><div class="musica"><h3>Em breve</h3></div></div>
-
-<h2 class="categoria">Pagode</h2>
-<div class="carousel"><div class="musica"><h3>Em breve</h3></div></div>
-
-<h2 class="categoria">Eletrônica</h2>
-<div class="carousel"><div class="musica"><h3>Em breve</h3></div></div>
-
-<h2 class="categoria">Sertanejo</h2>
-<div class="carousel"><div class="musica"><h3>Em breve</h3></div></div>
+  <h2 class="categoria">Funk</h2>
+  <div class="carousel"><div class="musica">Em breve</div></div>
 </section>
 
 <section id="biblioteca">
-  <div style="padding:80px;text-align:center;color:#d9f3e4">
-    Sua biblioteca aparecerá aqui.
-  </div>
+  <div style="padding:80px;text-align:center">Sua biblioteca aparecerá aqui</div>
 </section>
-
 </main>
-
-<div id="audioPlayer">
-  <button onclick="fecharAudio()">⏹</button>
-  <span>Nenhuma música tocando</span>
-</div>
 
 <div id="btnInstall">📥 Baixar HydraMusic</div>
 
 <script>
-setTimeout(() => {
-  introScreen.classList.add("fadeOut");
-  setTimeout(() => introScreen.style.display = "none", 1000);
-}, 2500);
-
-window.addEventListener("scroll",()=>{
-  topo.classList.toggle("scrolled",scrollY>50);
-});
+setTimeout(()=>introScreen.remove(),2500);
 
 function trocar(id,el){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("ativo"));
@@ -275,23 +230,18 @@ function trocar(id,el){
   el.classList.add("ativo");
 }
 
-function fecharAudio(){
-  audioPlayer.style.display="none";
-}
-
 /* INSTALL */
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt", e => {
+window.addEventListener("beforeinstallprompt", e=>{
   e.preventDefault();
-  deferredPrompt = e;
-  btnInstall.style.display = "block";
+  deferredPrompt=e;
+  btnInstall.style.display="block";
 });
-btnInstall.onclick = async () => {
-  if(!deferredPrompt) return;
+btnInstall.onclick=async()=>{
+  if(!deferredPrompt)return;
   deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-  btnInstall.style.display = "none";
+  deferredPrompt=null;
+  btnInstall.style.display="none";
 };
 
 if("serviceWorker" in navigator){
