@@ -3,8 +3,7 @@ const CACHE_NAME = "hydramusic-v1";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./manifest.json",
-  "https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"
+  "./manifest.json"
 ];
 
 self.addEventListener("install", event => {
@@ -18,15 +17,15 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys().then(keys => {
+      return Promise.all(
         keys.map(key => {
           if (key !== CACHE_NAME) {
             return caches.delete(key);
           }
         })
-      )
-    )
+      );
+    })
   );
   self.clients.claim();
 });
