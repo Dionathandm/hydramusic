@@ -1,19 +1,23 @@
-const CACHE_NAME = "hydramusic-v2"; // MUDE A VERSÃO SEMPRE
-const FILES = [
+const CACHE_NAME = "hydramusic-v1";
+
+const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./manifest.json"
+  "./manifest.json",
+  "https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"
 ];
 
-self.addEventListener("install", e => {
-  self.skipWaiting();
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES))
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
+  self.skipWaiting();
 });
 
-self.addEventListener("activate", e => {
-  e.waitUntil(
+self.addEventListener("activate", event => {
+  event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
         keys.map(key => {
@@ -27,8 +31,10 @@ self.addEventListener("activate", e => {
   self.clients.claim();
 });
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
