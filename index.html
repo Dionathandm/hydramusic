@@ -17,18 +17,9 @@
   --card:#1f6f43;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  background:var(--bg);
-  color:#fff;
-  padding-bottom:90px;
-}
+/* Reset */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:#fff;padding-bottom:90px}
 
 /* SPLASH */
 #splash{
@@ -64,12 +55,8 @@ header{
 header img{height:32px}
 
 /* LISTA DE MÚSICAS */
-main{
-  padding:16px;
-}
-h2{
-  margin-bottom:12px;
-}
+main{padding:16px}
+h2{margin-bottom:12px}
 .music{
   display:flex;
   align-items:center;
@@ -80,32 +67,14 @@ h2{
   cursor:pointer;
   transition:transform .2s;
 }
-.music:hover{
-  transform:scale(1.03);
-}
-.music img{
-  width:48px;
-  height:48px;
-  border-radius:6px;
-  margin-right:10px;
-}
-.music div{
-  flex:1;
-}
-.music strong{
-  display:block;
-}
-.music small{
-  opacity:.8;
-}
+.music:hover{transform:scale(1.03)}
+.music img{width:48px;height:48px;border-radius:6px;margin-right:10px}
+.music div{flex:1}
+.music strong{display:block}
+.music small{opacity:.8}
 
 /* PLAYER */
-#audioPlayer{
-  width:100%;
-  margin-top:15px;
-  border-radius:10px;
-  outline:none;
-}
+#audioPlayer{width:100%;margin-top:15px;border-radius:10px;outline:none}
 
 /* INSTALL */
 #installBar{
@@ -151,7 +120,7 @@ h2{
 <main>
   <h2>🔥 Músicas em alta</h2>
 
-  <div class="music" onclick="play('https://raw.githubusercontent.com/dionathandm/hydramusic/main/musica1.mp3','Música 1')">
+  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica1.mp3','Música 1')">
     <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
     <div>
       <strong>Música 1</strong>
@@ -159,7 +128,7 @@ h2{
     </div>
   </div>
 
-  <div class="music" onclick="play('https://raw.githubusercontent.com/dionathandm/hydramusic/main/musica2.mp3','Música 2')">
+  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica2.mp3','Música 2')">
     <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
     <div>
       <strong>Música 2</strong>
@@ -167,7 +136,7 @@ h2{
     </div>
   </div>
 
-  <div class="music" onclick="play('https://raw.githubusercontent.com/dionathandm/hydramusic/main/musica3.mp3','Música 3')">
+  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica3.mp3','Música 3')">
     <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
     <div>
       <strong>Música 3</strong>
