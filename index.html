@@ -54,7 +54,7 @@ header{
 }
 header img{height:32px}
 
-/* LISTA DE MÚSICAS */
+/* LISTA */
 main{padding:16px}
 h2{margin-bottom:12px}
 .music{
@@ -70,11 +70,14 @@ h2{margin-bottom:12px}
 .music:hover{transform:scale(1.03)}
 .music img{width:48px;height:48px;border-radius:6px;margin-right:10px}
 .music div{flex:1}
-.music strong{display:block}
-.music small{opacity:.8}
 
 /* PLAYER */
-#audioPlayer{width:100%;margin-top:15px;border-radius:10px;outline:none}
+#audioPlayer{
+  width:100%;
+  margin-top:15px;
+  border-radius:10px;
+  outline:none
+}
 
 /* INSTALL */
 #installBar{
@@ -120,26 +123,11 @@ h2{margin-bottom:12px}
 <main>
   <h2>🔥 Músicas em alta</h2>
 
-  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica1.mp3','Música 1')">
+  <!-- ÚNICA MÚSICA -->
+  <div class="music" onclick="play()">
     <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
     <div>
       <strong>Música 1</strong>
-      <small>HydraMusic</small>
-    </div>
-  </div>
-
-  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica2.mp3','Música 2')">
-    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-    <div>
-      <strong>Música 2</strong>
-      <small>HydraMusic</small>
-    </div>
-  </div>
-
-  <div class="music" onclick="play('https://dionathandm.github.io/hydramusic/musicas/musica3.mp3','Música 3')">
-    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-    <div>
-      <strong>Música 3</strong>
       <small>HydraMusic</small>
     </div>
   </div>
@@ -156,25 +144,13 @@ h2{margin-bottom:12px}
 /* SPLASH */
 setTimeout(()=>{
   document.getElementById("splash").style.display="none";
-  pedirNotificacao();
 },2500);
 
-/* PLAYER */
-function play(src,nome){
-  const audio=document.getElementById("audioPlayer");
-  audio.src=src;
+/* PLAYER FIXO */
+function play(){
+  const audio = document.getElementById("audioPlayer");
+  audio.src = "https://dionathandm.github.io/hydramusic/musicas/musica1.mp3";
   audio.play();
-}
-
-/* NOTIFICAÇÃO AUTOMÁTICA */
-function pedirNotificacao(){
-  if("Notification" in window){
-    Notification.requestPermission().then(p=>{
-      if(p==="granted"){
-        new Notification("HydraMusic 🎶",{body:"Bem-vindo ao HydraMusic!"});
-      }
-    });
-  }
 }
 
 /* INSTALL PWA */
@@ -207,4 +183,5 @@ if ("serviceWorker" in navigator) {
 </script>
 
 </body>
+</html></body>
 </html>
