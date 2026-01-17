@@ -2,7 +2,7 @@
   "name": "HydraMusic",
   "short_name": "HydraMusic",
   "description": "Ouça músicas grátis direto no app",
-  "start_url": "./?v=3",
+  "start_url": "./?v=4",
   "display": "standalone",
   "background_color": "#1f6f43",
   "theme_color": "#1f6f43",
