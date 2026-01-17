@@ -30,7 +30,7 @@ body{
 }
 
 /* SPLASH */
-#intro{
+#splash{
   position:fixed;
   inset:0;
   background:var(--verde-forte);
@@ -39,11 +39,11 @@ body{
   justify-content:center;
   z-index:9999;
 }
-#intro img{
+#splash img{
   width:60%;
   max-width:220px;
 }
-.fadeOut{
+.fade{
   animation:fadeOut 1s forwards;
 }
 @keyframes fadeOut{
@@ -55,57 +55,75 @@ header{
   height:56px;
   display:flex;
   align-items:center;
-  justify-content:center;
-  background:rgba(31,111,67,.9);
+  gap:10px;
+  padding:0 16px;
+  background:rgba(31,111,67,.95);
 }
-header img{
-  height:28px;
-}
+header img{height:28px}
+header span{font-weight:bold}
 
-/* HERO */
-.hero{
-  width:100%;
-  height:45vh;
-  background:url("https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png") center/contain no-repeat;
+/* INSTALL BANNER */
+#installBanner{
+  background:var(--verde-fraco);
+  color:#000;
+  padding:14px;
+  text-align:center;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 /* CONTEÚDO */
 main{
-  padding:20px;
-  text-align:center;
+  padding:16px;
 }
-h1{margin-bottom:10px}
-p{opacity:.9;margin-bottom:20px}
 
-/* BOTÕES */
-.btn{
-  width:100%;
-  padding:14px;
-  margin-bottom:12px;
-  border-radius:8px;
-  border:none;
-  background:var(--verde-fraco);
-  color:#000;
-  font-weight:bold;
+.section-title{
+  margin:16px 0 10px;
+  font-size:18px;
+}
+
+/* LISTA DE MÚSICAS */
+.list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.music{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:rgba(0,0,0,.25);
+  padding:12px;
+  border-radius:10px;
   cursor:pointer;
 }
-.btn:active{transform:scale(.97)}
-
-/* APP AREA */
-#app{
-  display:none;
-  padding:40px 20px;
-  text-align:center;
+.music img{
+  width:56px;
+  height:56px;
+  object-fit:cover;
+  border-radius:8px;
 }
+.music h4{font-size:15px}
+.music p{font-size:12px;opacity:.8}
 
-/* INSTALL */
-#btnInstall{
-  display:none;
+/* PLAYER */
+#player{
   position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:999;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(0,0,0,.85);
+  padding:12px;
+  display:none;
+  align-items:center;
+  gap:10px;
+}
+#player button{
+  background:var(--verde-fraco);
+  border:none;
+  padding:10px 14px;
+  border-radius:8px;
+  font-weight:bold;
 }
 </style>
 </head>
@@ -113,84 +131,76 @@ p{opacity:.9;margin-bottom:20px}
 <body>
 
 <!-- SPLASH -->
-<div id="intro">
+<div id="splash">
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </div>
 
 <header>
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+  <span>HydraMusic</span>
 </header>
 
-<div id="home">
-  <div class="hero"></div>
+<div id="installBanner">📥 Instalar HydraMusic</div>
 
-  <main>
-    <h1>HydraMusic</h1>
-    <p>Ouça músicas gratuitamente direto no app</p>
+<main>
+  <div class="section-title">Recomendadas</div>
+  <div class="list">
+    <div class="music" onclick="play('Música 1')">
+      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+      <div>
+        <h4>Música em breve</h4>
+        <p>Artista</p>
+      </div>
+    </div>
+    <div class="music" onclick="play('Música 2')">
+      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+      <div>
+        <h4>Música em breve</h4>
+        <p>Artista</p>
+      </div>
+    </div>
+  </div>
+</main>
 
-    <button class="btn" onclick="ativarNotificacao()">🔔 Ativar notificações</button>
-    <button class="btn" onclick="entrarApp()">🎧 Explorar músicas</button>
-  </main>
+<div id="player">
+  <button onclick="stop()">⏹</button>
+  <span id="now">Nenhuma música</span>
 </div>
-
-<!-- APP -->
-<div id="app">
-  <h2>🎶 Bem-vindo ao HydraMusic</h2>
-  <p>Área principal do aplicativo</p>
-</div>
-
-<button id="btnInstall" class="btn">📥 Baixar HydraMusic</button>
 
 <script>
 /* SPLASH */
 setTimeout(()=>{
-  document.getElementById("intro").classList.add("fadeOut");
+  document.getElementById("splash").classList.add("fade");
 },2500);
 
-/* PEDIR NOTIFICAÇÃO AUTOMÁTICA AO ABRIR */
+/* PEDIR NOTIFICAÇÃO AUTOMÁTICO */
 window.addEventListener("load",()=>{
   if("Notification"in window){
     Notification.requestPermission();
   }
 });
 
-/* NOTIFICAÇÃO */
-function ativarNotificacao(){
-  if(!("Notification"in window)) return;
-  Notification.requestPermission().then(p=>{
-    if(p==="granted"){
-      new Notification("HydraMusic",{body:"Notificações ativadas 🎶"});
-    }
-  });
-  mostrarInstall();
+/* PLAYER SIMPLES */
+function play(nome){
+  document.getElementById("now").innerText = nome;
+  document.getElementById("player").style.display="flex";
+}
+function stop(){
+  document.getElementById("player").style.display="none";
 }
 
-/* ENTRAR NO APP */
-function entrarApp(){
-  document.getElementById("home").style.display="none";
-  document.getElementById("app").style.display="block";
-  mostrarInstall();
-}
-
-/* INSTALL PWA */
+/* INSTALL */
 let deferredPrompt;
 window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault();
   deferredPrompt=e;
 });
-
-function mostrarInstall(){
-  if(deferredPrompt){
-    document.getElementById("btnInstall").style.display="block";
-  }
-}
-
-document.getElementById("btnInstall").onclick=async()=>{
+document.getElementById("installBanner").onclick=async()=>{
   if(!deferredPrompt)return;
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt=null;
-  document.getElementById("btnInstall").style.display="none";
+  document.getElementById("installBanner").style.display="none";
 };
 </script>
 
