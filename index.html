@@ -123,11 +123,11 @@ h2{margin-bottom:12px}
 <main>
   <h2>🔥 Músicas em alta</h2>
 
-  <!-- ÚNICA MÚSICA -->
-  <div class="music" onclick="play()">
+  <!-- MÚSICA -->
+  <div class="music" onclick="playMusic()">
     <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
     <div>
-      <strong>Música 1</strong>
+      <strong>Música 1</strong><br>
       <small>HydraMusic</small>
     </div>
   </div>
@@ -146,8 +146,8 @@ setTimeout(()=>{
   document.getElementById("splash").style.display="none";
 },2500);
 
-/* PLAYER FIXO */
-function play(){
+/* PLAYER */
+function playMusic(){
   const audio = document.getElementById("audioPlayer");
   audio.src = "https://dionathandm.github.io/hydramusic/musicas/musica1.mp3";
   audio.play();
@@ -183,5 +183,4 @@ if ("serviceWorker" in navigator) {
 </script>
 
 </body>
-</html></body>
 </html>
