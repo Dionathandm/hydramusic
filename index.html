@@ -119,9 +119,27 @@ h2{margin-bottom:12px}
 }
 
 .music{
-  display:inline-flex;
-  width:260px;
-  margin-right:10px;
+  display: flex;        /* para centralizar conteúdo dentro da música */
+  align-items: center;  /* mantém a imagem e texto alinhados verticalmente */
+  max-width: 260px;     /* largura fixa da música */
+  margin: 10px auto;    /* centraliza horizontalmente e dá espaçamento vertical */
+  background: var(--card);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+.music:hover{
+  transform: scale(1.03);
+}
+.music img{
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.music div{
+  flex: 1;
 }
 .progressContainer{
   width:100%;
