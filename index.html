@@ -293,8 +293,11 @@ function nextMusic(e){
   current = (current + 1) % list.length;
   playMusic(current);
 }
+
+function prevMusic(e){
   e.stopPropagation();
-  current = (current - 1 + playlist.length) % playlist.length;
+  const list = playlists[currentPlaylist];
+  current = (current - 1 + list.length) % list.length;
   playMusic(current);
 }  
 renderPlaylist("alta");
