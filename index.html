@@ -132,8 +132,12 @@ h2{margin-bottom:12px}
 <div id="miniPlayer" onclick="openPlayer()">
   <img id="miniCover" src="">
   <div class="miniInfo">
-    <strong id="miniTitle">Selecione uma música</strong>
-    <span id="miniArtist">HydraMusic</span>
+  <strong id="miniTitle">Selecione uma música</strong>
+  <span id="miniArtist">HydraMusic</span>
+
+  <div class="progressContainer" onclick="seek(event)">
+    <div id="progressBar"></div>
+  </div>
   </div>
   <button onclick="togglePlay(event)" id="miniPlay">▶</button>
 </div>
