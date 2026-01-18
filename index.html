@@ -196,25 +196,6 @@ h2{margin-bottom:12px}
 </div>
 
 <script>
-function renderPlaylist(name){
-  const container = document.getElementById(name);
-  container.innerHTML = "";
-
-  playlists[name].forEach((music, index)=>{
-    container.innerHTML += `
-      <div class="music" onclick="playMusic(${index})">
-        <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-        <div><strong>${music.replace("_spotdown.org.mp3","")}</strong></div>
-      </div>
-    `;
-  });
-}
-
-function openPlaylist(name){
-  document.querySelectorAll(".playlistContent").forEach(p=>p.style.display="none");
-  document.getElementById(name).style.display = "block";
-  currentPlaylist = name;
-}  
 setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
 
 
