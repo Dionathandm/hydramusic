@@ -192,21 +192,7 @@ h2{margin-bottom:12px}
 <script>
 setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
 
-const playlist = [
-  "A Firma Segue Lucrando_spotdown.org.mp3",
-  "A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
-  "Barbie_spotdown.org.mp3",
-  "Chorar pra Quê_spotdown.org.mp3",
-  "Dentro do I30_spotdown.org.mp3",
-  "Estratégia_spotdown.org.mp3",
-  "Menina Se Prepara_spotdown.org.mp3",
-  "Motel de Motor_spotdown.org.mp3",
-  "Sexo na Treta - funk_spotdown.org.mp3",
-  "Tô na Brasilia com o Zigão_spotdown.org.mp3",
-  "Vem Intencionada_spotdown.org.mp3",
-  "Vou Pagar Combao Vs Meia Noite Eu Sumi_spotdown.org.mp3",
-  "Vou pela Madrugada_spotdown.org.mp3"
-];
+
 
 let current = 0;
 const audio = document.getElementById("audioPlayer");
@@ -283,7 +269,28 @@ if("serviceWorker" in navigator){
   });
 }
 function nextMusic(e){
-  e.stopPropagation();
+  e.stopProconst playlists = {
+  alta: [
+    "A Firma Segue Lucrando_spotdown.org.mp3",
+    "A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
+    "Barbie_spotdown.org.mp3",
+    "Chorar pra Quê_spotdown.org.mp3",
+    "Dentro do I30_spotdown.org.mp3",
+    "Estratégia_spotdown.org.mp3",
+    "Menina Se Prepara_spotdown.org.mp3",
+    "Motel de Motor_spotdown.org.mp3",
+    "Sexo na Treta - funk_spotdown.org.mp3",
+    "Tô na Brasilia com o Zigão_spotdown.org.mp3",
+    "Vem Intencionada_spotdown.org.mp3",
+    "Vou Pagar Combao Vs Meia Noite Eu Sumi_spotdown.org.mp3",
+    "Vou pela Madrugada_spotdown.org.mp3"
+  ],
+  pagode: [],
+  eletronica: []
+};
+
+let currentPlaylist = "alta";
+  pagation();
   current = (current + 1) % playlist.length;
   playMusic(current);
 }
