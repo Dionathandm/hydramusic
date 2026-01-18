@@ -1,4 +1,4 @@
-const CACHE_NAME = "hydramusic-v6";
+const CACHE_NAME = "hydramusic-v1";
 
 const FILES_TO_CACHE = [
   "./",
