@@ -5,113 +5,75 @@
 <title>HydraMusic</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1f6f43">
 
 <style>
-:root{
-  --verde-forte:#1f6f43;
-  --verde-fraco:#2fd07f;
-  --bg:#0f3d28;
-  --card:#1f6f43;
-}
-
-/* Reset */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:var(--bg);color:#fff;padding-bottom:90px}
-
-/* SPLASH */
-#splash{
-  position:fixed;
-  inset:0;
-  background:var(--card);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-#splash img{
-  width:200px;
-  animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.05)}
-  100%{transform:scale(1)}
-}
-
-/* HEADER */
-header{
-  height:60px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(31,111,67,.95);
-  position:sticky;
-  top:0;
-  z-index:10;
-}
-header img{height:32px}
-
-/* LISTA */
-main{padding:16px}
-h2{margin-bottom:12px}
-.music{
-  display:flex;
-  align-items:center;
-  background:var(--card);
-  border-radius:10px;
-  padding:10px;
-  margin-bottom:10px;
-  cursor:pointer;
-  transition:transform .2s;
-}
-.music:hover{transform:scale(1.03)}
-.music img{width:48px;height:48px;border-radius:6px;margin-right:10px}
-.music div{flex:1}
-
-/* PLAYER */
-#audioPlayer{
-  width:100%;
-  margin-top:15px;
-  border-radius:10px;
-  outline:none
-}
-
-/* INSTALL */
 #installBar{
   position:fixed;
-  bottom:0;
+  bottom:70px; /* fica acima do player */
   left:0;
   right:0;
   background:#000;
-  padding:12px;
+  padding:10px;
   text-align:center;
-  animation:balanco 1.2s infinite;
-  z-index:20;
-}
-@keyframes balanco{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-6px)}
-  100%{transform:translateY(0)}
+  z-index:40;
 }
 #installBar button{
   background:var(--verde-fraco);
   border:none;
-  padding:14px;
+  padding:12px;
   width:95%;
   border-radius:10px;
   font-weight:bold;
   font-size:16px;
   cursor:pointer;
 }
+:root{
+  --verde-forte:#1f6f43;
+  --verde-fraco:#2fd07f;
+  --bg:#0f3d28;
+  --card:#1f6f43;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:var(--bg);color:#fff;padding-bottom:110px}
+
+#splash{
+  position:fixed;inset:0;background:var(--card);
+  display:flex;align-items:center;justify-content:center;z-index:9999
+}
+#splash img{width:200px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+
+header{
+  height:60px;display:flex;align-items:center;justify-content:center;
+  background:rgba(31,111,67,.95);position:sticky;top:0;z-index:10
+}
+header img{height:32px}
+
+main{padding:16px}
+h2{margin-bottom:12px}
+
+.music{
+  display:flex;align-items:center;background:var(--card);
+  border-radius:10px;padding:10px;margin-bottom:10px;
+  cursor:pointer;transition:.2s
+}
+.music:hover{transform:scale(1.03)}
+.music img{width:48px;height:48px;border-radius:6px;margin-right:10px}
+.music div{flex:1}
+
+/* PLAYER FIXO */
+#playerBar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:#000;padding:10px;z-index:30
+}
+#audioPlayer{width:100%}
 </style>
 </head>
 
 <body>
 
-<!-- SPLASH -->
 <div id="splash">
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </div>
@@ -123,161 +85,89 @@ h2{margin-bottom:12px}
 <main>
 <h2>🔥 Músicas em alta</h2>
 
-<div class="music" onclick="playMusic('A Firma Segue Lucrando_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>A Firma Segue Lucrando</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
+<div class="music" onclick="playMusic(0)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Firma Segue Lucrando</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(1)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Novinha Linda Que Mora Aqui do Lado</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(2)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Barbie</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(3)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Chorar Pra Quê</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(4)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Dentro do 130</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(5)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Estratégia</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(6)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Menina Se Prepara</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(7)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Motel de Motor</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(8)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Sexo na Treta – Funk</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(9)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Tô na Brasília com o Zigão</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(10)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vem Intencionada</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(11)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou Pagar Comboão vs Meia Noite – Sumi</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(12)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou Pela Madrugada</strong><small>HydraMusic</small></div></div>
 
-<div class="music" onclick="playMusic('A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>A Novinha Linda Que Mora Aqui do Lado</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Barbie_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Barbie</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Chorar pra Quê_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Chorar Pra Quê</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Dentro do 130_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Dentro do 130</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Estratégia_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Estratégia</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Menina Se Prepara_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Menina Se Prepara</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Motel de Motor_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Motel de Motor</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Sexo na Treta - funk_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Sexo na Treta – Funk</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Tô na Brasília com o Zigão_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Tô na Brasília com o Zigão</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Vem Intencionada_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Vem Intencionada</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Vou Pagar Comboao Vs Meia Noite Sumi_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Vou Pagar Comboão vs Meia Noite – Sumi</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<div class="music" onclick="playMusic('Vou pela Madrugada_spotdown.org.mp3')">
-  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-  <div>
-    <strong>Vou Pela Madrugada</strong>
-    <small>HydraMusic</small>
-  </div>
-</div>
-
-<audio id="audioPlayer" controls></audio>
-
-  <audio id="audioPlayer" controls></audio>
 </main>
 
-<!-- INSTALL -->
-<div id="installBar">
-  <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
+<div id="playerBar">
+  <audio id="audioPlayer" controls></audio>
 </div>
 
 <script>
-/* SPLASH */
-setTimeout(()=>{
-  document.getElementById("splash").style.display="none";
-},2500);
+setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
 
-/* PLAYER */
-function playMusic(){
-  const audio = document.getElementById("audioPlayer");
-  audio.src = "https://dionathandm.github.io/hydramusic/musicas/musica1.mp3";
+const playlist = [
+"A Firma Segue Lucrando_spotdown.org.mp3",
+"A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
+"Barbie_spotdown.org.mp3",
+"Chorar pra Quê_spotdown.org.mp3",
+"Dentro do 130_spotdown.org.mp3",
+"Estratégia_spotdown.org.mp3",
+"Menina Se Prepara_spotdown.org.mp3",
+"Motel de Motor_spotdown.org.mp3",
+"Sexo na Treta - funk_spotdown.org.mp3",
+"Tô na Brasília com o Zigão_spotdown.org.mp3",
+"Vem Intencionada_spotdown.org.mp3",
+"Vou Pagar Comboao Vs Meia Noite Sumi_spotdown.org.mp3",
+"Vou pela Madrugada_spotdown.org.mp3"
+];
+
+let current = 0;
+const audio = document.getElementById("audioPlayer");
+
+function playMusic(index){
+  current = index;
+  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" + encodeURIComponent(playlist[current]);
   audio.play();
 }
 
-/* INSTALL PWA */
+audio.addEventListener("ended",()=>{
+  current = (current + 1) % playlist.length;
+  playMusic(current);
+});
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",()=>{
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
+<!-- INSTALL BAR -->
+<div id="installBar">
+  <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
+</div>
+<script>
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt",e=>{
+
+window.addEventListener("beforeinstallprompt", e => {
   e.preventDefault();
-  deferredPrompt=e;
+  deferredPrompt = e;
+  document.getElementById("installBar").style.display = "block";
 });
 
-document.getElementById("btnInstall").onclick=async()=>{
+document.getElementById("btnInstall").onclick = async () => {
   if(!deferredPrompt){
     alert("Use o menu do navegador para instalar 📲");
     return;
   }
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
-  deferredPrompt=null;
+  deferredPrompt = null;
 };
 </script>
-
-<!-- SERVICE WORKER -->
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("Service Worker registrado"))
-      .catch(err => console.log("SW erro:", err));
-  });
-}
-</script>
-
 </body>
 </html>
