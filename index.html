@@ -168,10 +168,18 @@ const audio = document.getElementById("audioPlayer");
 
 function playMusic(index){
   current = index;
+
+  const musicEl = document.querySelectorAll(".music")[index];
+  const title = musicEl.querySelector("strong").innerText;
+  const cover = musicEl.querySelector("img").src;
+
   audio.src = "https://dionathandm.github.io/hydramusic/musicas/" + encodeURIComponent(playlist[current]);
   audio.play();
-}
 
+  document.getElementById("miniTitle").innerText = title;
+  document.getElementById("miniCover").src = cover;
+  document.getElementById("miniPlay").innerText = "⏸";
+}
 audio.addEventListener("ended",()=>{
   current = (current + 1) % playlist.length;
   playMusic(current);
