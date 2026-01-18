@@ -122,7 +122,15 @@ h2{margin-bottom:12px}
 
 <main>
 <div class="playlist">
-  <h2>🔥 Música Em Alta</h2>
+  <h2 onclick="openPlaylist('alta')">🔥 Músicas em Alta</h2>
+  <div id="alta" class="playlistContent"></div>
+
+  <h2 onclick="openPlaylist('pagode')">🎵 Pagode</h2>
+  <div id="pagode" class="playlistContent"></div>
+
+  <h2 onclick="openPlaylist('eletronica')">⚡ Eletrônicas</h2>
+  <div id="eletronica" class="playlistContent"></div>
+</div>
 
 <div class="music" onclick="playMusic(0)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Firma Segue Lucrando</strong></div></div>
 <div class="music" onclick="playMusic(1)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Novinha Linda Que Mora Aqui do Lado</strong></div></div>
