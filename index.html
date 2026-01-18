@@ -224,7 +224,7 @@ function playMusic(index){
   const cover = musicEl.querySelector("img").src;
 
   audio.src = "https://dionathandm.github.io/hydramusic/musicas/" 
-    + encodeURIComponent(playlist[current]);
+    + encodeURIComponent(playlists[currentPlaylist][current]);
 
   document.getElementById("miniPlayer").style.display = "flex";
 
