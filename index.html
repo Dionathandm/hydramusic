@@ -170,6 +170,14 @@ h2{margin-bottom:12px}
   z-index:50;
   cursor:pointer;
 }  
+img {
+  -webkit-user-drag: none;   /* evita arrastar a imagem */
+  user-drag: none;           /* padrão para outros navegadores */
+  -webkit-touch-callout: none; /* desativa menu de toque longo no iOS */
+  -moz-user-select: none;    /* desativa seleção no Firefox */
+  -ms-user-select: none;     /* desativa seleção no IE */
+  user-select: none;          /* desativa seleção no Chrome/Safari */
+}  
 </style>
 </head>
 
