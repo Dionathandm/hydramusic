@@ -9,26 +9,6 @@
 <meta name="theme-color" content="#1f6f43">
 
 <style>
-#installBar{
-  position:fixed;
-  bottom:70px; /* fica acima do player */
-  left:0;
-  right:0;
-  background:#000;
-  padding:10px;
-  text-align:center;
-  z-index:40;
-}
-#installBar button{
-  background:var(--verde-fraco);
-  border:none;
-  padding:12px;
-  width:95%;
-  border-radius:10px;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
 :root{
   --verde-forte:#1f6f43;
   --verde-fraco:#2fd07f;
@@ -36,7 +16,7 @@
   --card:#1f6f43;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:var(--bg);color:#fff;padding-bottom:110px}
+body{background:var(--bg);color:#fff;padding-bottom:140px}
 
 #splash{
   position:fixed;inset:0;background:var(--card);
@@ -69,6 +49,27 @@ h2{margin-bottom:12px}
   background:#000;padding:10px;z-index:30
 }
 #audioPlayer{width:100%}
+
+/* INSTALL */
+#installBar{
+  position:fixed;
+  bottom:70px;
+  left:0;right:0;
+  background:#000;
+  padding:10px;
+  text-align:center;
+  z-index:40;
+}
+#installBar button{
+  background:var(--verde-fraco);
+  border:none;
+  padding:12px;
+  width:95%;
+  border-radius:10px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -85,19 +86,19 @@ h2{margin-bottom:12px}
 <main>
 <h2>🔥 Músicas em alta</h2>
 
-<div class="music" onclick="playMusic(0)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Firma Segue Lucrando</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(1)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Novinha Linda Que Mora Aqui do Lado</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(2)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Barbie</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(3)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Chorar Pra Que</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(4)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Dentro Do 130</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(5)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Estratégia</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(6)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Menina Se Prepara</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(7)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Motel de Motor</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(8)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Sexo Na Treta – Funk</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(9)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Tô na Brasilia com o Zigão</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(10)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vem Intencionada</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(11)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou Pagar Comboao Vs Meia Noite – Sumi</strong><small>HydraMusic</small></div></div>
-<div class="music" onclick="playMusic(12)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou Pela Madrugada</strong><small>HydraMusic</small></div></div>
+<div class="music" onclick="playMusic(0)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Firma Segue Lucrando</strong></div></div>
+<div class="music" onclick="playMusic(1)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>A Novinha Linda Que Mora Aqui do Lado</strong></div></div>
+<div class="music" onclick="playMusic(2)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Barbie</strong></div></div>
+<div class="music" onclick="playMusic(3)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Chorar Pra Quê</strong></div></div>
+<div class="music" onclick="playMusic(4)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Dentro do I30</strong></div></div>
+<div class="music" onclick="playMusic(5)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Estratégia</strong></div></div>
+<div class="music" onclick="playMusic(6)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Menina Se Prepara</strong></div></div>
+<div class="music" onclick="playMusic(7)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Motel de Motor</strong></div></div>
+<div class="music" onclick="playMusic(8)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Sexo na Treta - Funk</strong></div></div>
+<div class="music" onclick="playMusic(9)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Tô na Brasilia com o Zigão</strong></div></div>
+<div class="music" onclick="playMusic(10)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vem Intencionada</strong></div></div>
+<div class="music" onclick="playMusic(11)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou Pagar Combao Vs Meia Noite Eu Sumi</strong></div></div>
+<div class="music" onclick="playMusic(12)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou pela Madrugada</strong></div></div>
 
 </main>
 
@@ -105,23 +106,27 @@ h2{margin-bottom:12px}
   <audio id="audioPlayer" controls></audio>
 </div>
 
+<div id="installBar" style="display:none">
+  <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
+</div>
+
 <script>
 setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
 
 const playlist = [
-"A Firma Segue Lucrando_spotdown.org.mp3",
-"A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
-"Barbie_spotdown.org.mp3",
-"Chorar pra Quê_spotdown.org.mp3",
-"Dentro do 130_spotdown.org.mp3",
-"Estratégia_spotdown.org.mp3",
-"Menina Se Prepara_spotdown.org.mp3",
-"Motel de Motor_spotdown.org.mp3",
-"Sexo na Treta - funk_spotdown.org.mp3",
-"Tô na Brasília com o Zigão_spotdown.org.mp3",
-"Vem Intencionada_spotdown.org.mp3",
-"Vou Pagar Comboao Vs Meia Noite Sumi_spotdown.org.mp3",
-"Vou pela Madrugada_spotdown.org.mp3"
+  "A Firma Segue Lucrando_spotdown.org.mp3",
+  "A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
+  "Barbie_spotdown.org.mp3",
+  "Chorar pra Quê_spotdown.org.mp3",
+  "Dentro do I30_spotdown.org.mp3",
+  "Estratégia_spotdown.org.mp3",
+  "Menina Se Prepara_spotdown.org.mp3",
+  "Motel de Motor_spotdown.org.mp3",
+  "Sexo na Treta - funk_spotdown.org.mp3",
+  "Tô na Brasilia com o Zigão_spotdown.org.mp3",
+  "Vem Intencionada_spotdown.org.mp3",
+  "Vou Pagar Combao Vs Meia Noite Eu Sumi_spotdown.org.mp3",
+  "Vou pela Madrugada_spotdown.org.mp3"
 ];
 
 let current = 0;
@@ -137,37 +142,29 @@ audio.addEventListener("ended",()=>{
   current = (current + 1) % playlist.length;
   playMusic(current);
 });
-</script>
 
-<script>
+/* PWA INSTALL */
+let deferredPrompt;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById("installBar").style.display = "block";
+});
+document.getElementById("btnInstall").onclick = async () => {
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+  }
+};
+
+/* SERVICE WORKER */
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>{
     navigator.serviceWorker.register("./sw.js");
   });
 }
 </script>
-<!-- INSTALL BAR -->
-<div id="installBar">
-  <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
-</div>
-<script>
-let deferredPrompt;
 
-window.addEventListener("beforeinstallprompt", e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById("installBar").style.display = "block";
-});
-
-document.getElementById("btnInstall").onclick = async () => {
-  if(!deferredPrompt){
-    alert("Use o menu do navegador para instalar 📲");
-    return;
-  }
-  deferredPrompt.prompt();
-  await deferredPrompt.userChoice;
-  deferredPrompt = null;
-};
-</script>
 </body>
 </html>
