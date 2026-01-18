@@ -292,17 +292,15 @@ if("serviceWorker" in navigator){
 }
 function nextMusic(e){
   e.stopPropagation();
-  const list = playlists[currentPlaylist];
-  current = (current + 1) % list.length;
+  current = (current + 1) % musicas.length;
   playMusic(current);
 }
 
 function prevMusic(e){
   e.stopPropagation();
-  const list = playlists[currentPlaylist];
-  current = (current - 1 + list.length) % list.length;
+  current = (current - 1 + musicas.length) % musicas.length;
   playMusic(current);
-}  
+  }  
 </script>
 
 </body>
