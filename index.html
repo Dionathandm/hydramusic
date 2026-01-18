@@ -180,6 +180,17 @@ function playMusic(index){
   document.getElementById("miniCover").src = cover;
   document.getElementById("miniPlay").innerText = "⏸";
 }
+  function togglePlay(e){
+  e.stopPropagation();
+
+  if(audio.paused){
+    audio.play();
+    document.getElementById("miniPlay").innerText = "⏸";
+  } else {
+    audio.pause();
+    document.getElementById("miniPlay").innerText = "▶";
+  }
+  }
 audio.addEventListener("ended",()=>{
   current = (current + 1) % playlist.length;
   playMusic(current);
