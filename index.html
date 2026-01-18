@@ -341,6 +341,11 @@ function prevMusic(e){
   playMusic(current);
   }  
 </script>
-
+<script>
+document.querySelectorAll('.music img, #miniPlayer img').forEach(img => {
+  img.addEventListener('contextmenu', e => e.preventDefault()); // bloqueia menu de toque longo
+  img.addEventListener('dragstart', e => e.preventDefault());   // bloqueia arrastar
+});
+</script>
 </body>
 </html>
