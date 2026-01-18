@@ -105,9 +105,16 @@ h2{margin-bottom:12px}
   
 </main>
 
-<div id="playerBar">
-  <audio id="audioPlayer" controls></audio>
+<div id="miniPlayer" onclick="openPlayer()">
+  <img id="miniCover" src="">
+  <div class="miniInfo">
+    <strong id="miniTitle">Selecione uma música</strong>
+    <span id="miniArtist">HydraMusic</span>
+  </div>
+  <button onclick="togglePlay(event)" id="miniPlay">▶</button>
 </div>
+
+<audio id="audioPlayer"></audio>
 
 <div id="installBar" style="display:none">
   <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
