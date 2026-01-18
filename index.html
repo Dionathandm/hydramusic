@@ -248,7 +248,7 @@ function playMusic(index){
   }
   }
 audio.addEventListener("ended",()=>{
-  const list = playlists[currentPlaylist];
+  const list = musicas;
   current = (current + 1) % list.length;
   playMusic(current);
 });
