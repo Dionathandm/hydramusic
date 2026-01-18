@@ -173,7 +173,11 @@ function playMusic(index){
   const title = musicEl.querySelector("strong").innerText;
   const cover = musicEl.querySelector("img").src;
 
-  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" + encodeURIComponent(playlist[current]);
+  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" 
+    + encodeURIComponent(playlist[current]);
+
+  document.getElementById("miniPlayer").style.display = "flex";
+
   audio.play();
 
   document.getElementById("miniTitle").innerText = title;
