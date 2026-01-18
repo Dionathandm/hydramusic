@@ -246,7 +246,8 @@ function playMusic(index){
   }
   }
 audio.addEventListener("ended",()=>{
-  current = (current + 1) % playlist.length;
+  const list = playlists[currentPlaylist];
+  current = (current + 1) % list.length;
   playMusic(current);
 });
 // Atualiza a barra conforme a música toca
