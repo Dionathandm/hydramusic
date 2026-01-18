@@ -210,7 +210,51 @@ img {
 <div class="music" onclick="playMusic(12)"><img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"><div><strong>Vou pela Madrugada</strong></div></div>
 
 </div>
-  
+<h2>Teddy Wins 🔥</h2>
+
+  <div class="teddy">
+  <div class="music" onclick="playTeddy(0)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>All That Really Matters</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(1)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Bad Dreams</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(2)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Gone Gone Gone</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(3)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Hammer to the Heart</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(4)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Lose Control</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(5)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Silent Night</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(6)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Somethin' 'Bout A Woman</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(7)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>The Door - CYRIL Remix</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(8)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>The Door</strong></div>
+  </div>
+  <div class="music" onclick="playTeddy(9)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>You're Still The One</strong></div>
+  </div>
+    
+</div>  
 </main>
 
 <div id="miniPlayer">
@@ -252,6 +296,18 @@ const musicas = [
   "Vou Pagar Combao Vs Meia Noite Eu Sumi_spotdown.org.mp3",
   "Vou pela Madrugada_spotdown.org.mp3"
 ];  
+ const teddyWins = [
+  "All That Really Matters_spotdown.org.mp3",
+  "Bad Dreams_spotdown.org.mp3",
+  "Gone Gone Gone_spotdown.org.mp3",
+  "Hammer to the Heart_spotdown.org.mp3",
+  "Lose Control_spotdown.org.mp3",
+  "Silent Night_spotdown.org.mp3",
+  "Somethin' 'Bout A Woman_spotdown.org.mp3",
+  "The Door - CYRIL Remix_spotdown.org.mp3",
+  "The Door_spotdown.org.mp3",
+  "You're Still The One_spotdown.org.mp3"
+]; 
 setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
 
 
@@ -277,6 +333,24 @@ function playMusic(index){
   document.getElementById("miniCover").src = cover;
   document.getElementById("miniPlay").innerText = "⏸";
 }
+function playTeddy(index){
+  current = index;
+
+  const musicEl = document.querySelectorAll(".teddy .music")[index];
+  const title = musicEl.querySelector("strong").innerText;
+  const cover = musicEl.querySelector("img").src;
+
+  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" 
+    + encodeURIComponent(teddyWins[current]);
+
+  document.getElementById("miniPlayer").style.display = "flex";
+
+  audio.play();
+
+  document.getElementById("miniTitle").innerText = title;
+  document.getElementById("miniCover").src = cover;
+  document.getElementById("miniPlay").innerText = "⏸";
+}  
   function togglePlay(e){
   e.stopPropagation();
 
