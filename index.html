@@ -2,9 +2,8 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>HydraMusic</title>
+<title>HydraMusic - Dioni Beats</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#1f6f43">
 
@@ -18,303 +17,220 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:var(--bg);color:#fff;padding-bottom:140px}
 
+/* SPLASH */
 #splash{
-  position:fixed;inset:0;background:var(--card);
-  display:flex;align-items:center;justify-content:center;z-index:9999
+  position:fixed;inset:0;background:var(--verde-forte);
+  display:flex;align-items:center;justify-content:center;z-index:9999;
 }
 #splash img{width:200px;animation:pulse 1.5s infinite}
 @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
 
+/* HEADER */
 header{
-  height:60px;display:flex;align-items:center;justify-content:center;
-  background:rgba(31,111,67,.95);position:sticky;top:0;z-index:10
+  height:60px;display:flex;align-items:center;justify-content:flex-start;
+  background:rgba(31,111,67,.95);position:sticky;top:0;z-index:10;
+  padding:0 16px;
 }
-header img{height:32px}
+header img{height:40px;margin-right:12px}
+header h1{font-size:20px;color:#fff}
 
-main{padding:16px}
-h2{margin-bottom:12px}
+/* SUBTÍTULO */
+#subtitle{
+  text-align:center;
+  font-size:18px;
+  margin:12px 0;
+  font-weight:bold;
+}
 
+/* MÚSICAS */
 .music{
   display:flex;align-items:center;background:var(--card);
-  border-radius:10px;padding:10px;margin-bottom:10px;
-  cursor:pointer;transition:.2s
+  border-radius:10px;padding:10px;margin:10px;
+  cursor:pointer;transition:.2s;max-width:300px;margin-left:auto;margin-right:auto;
 }
 .music:hover{transform:scale(1.03)}
 .music img{width:48px;height:48px;border-radius:6px;margin-right:10px}
 .music div{flex:1}
 
-/* PLAYER FIXO */
-#playerBar{
+/* MINI PLAYER */
+#miniPlayer{
   position:fixed;bottom:0;left:0;right:0;
-  background:#000;padding:10px;z-index:30
-}
-#audioPlayer{width:100%}
-
-/* INSTALL */
-#installBar{
-  position:fixed;
-  bottom:70px;
-  left:0;right:0;
   background:#000;
-  padding:10px;
-  text-align:center;
-  z-index:40;
+  display:none;
+  align-items:center;
+  padding:10px;gap:10px;
+  z-index:50;
+  cursor:pointer;
+}
+#miniPlayer img{width:48px;height:48px;border-radius:6px}
+.miniInfo{flex:1}
+#miniTitle{font-weight:bold}
+#miniArtist{font-size:12px;color:#ccc}
+.progressContainer{
+  width:100%;height:6px;background:#333;border-radius:4px;margin-top:6px;cursor:pointer;overflow:hidden;
+}
+#progressBar{height:100%;width:0%;background:var(--verde-fraco);transition:width 0.2s linear}
+.controls{display:flex;gap:12px;align-items:center}
+.controls button{background:none;border:none;color:#fff;font-size:26px;cursor:pointer}
+
+/* INSTALL BUTTON */
+#installBar{
+  position:fixed;bottom:70px;left:0;right:0;background:#000;padding:10px;text-align:center;z-index:40;
 }
 #installBar button{
-  background:var(--verde-fraco);
-  border:none;
-  padding:12px;
-  width:95%;
-  border-radius:10px;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
-#miniPlayer{
-  position:fixed;
-  bottom:0;left:0;right:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  padding:10px;
-  gap:10px;
-  z-index:50;
-  cursor:pointer;
-}
-#miniPlayer img{
-  width:48px;height:48px;
-  border-radius:6px;
-}
-.miniInfo{
-  flex:1;
-}
-#miniPlay{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:24px;
-}
-.controls{
-  display:flex;
-  gap:12px;
-  align-items:center;
+  background:var(--verde-fraco);border:none;padding:12px;width:95%;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer;
 }
 
-.controls button{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:26px;
-  cursor:pointer;
-}  
-.playlist h2{
-  cursor:pointer;
-}
-
-.playlistContent{
-  display:none;
-  overflow-x:auto;
-  white-space:nowrap;
-  margin-bottom:20px;
-}
-
-.music{
-  display: flex;        /* para centralizar conteúdo dentro da música */
-  align-items: center;  /* mantém a imagem e texto alinhados verticalmente */
-  max-width: 260px;     /* largura fixa da música */
-  margin: 10px auto;    /* centraliza horizontalmente e dá espaçamento vertical */
-  background: var(--card);
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  transition: .2s;
-}
-.music:hover{
-  transform: scale(1.03);
-}
-.music img{
-  width: 48px;
-  height: 48px;
-  border-radius: 6px;
-  margin-right: 10px;
-}
-.music div{
-  flex: 1;
-}
-.progressContainer{
-  width:100%;
-  height:6px;
-  background:#333;
-  border-radius:4px;
-  margin-top:6px;
-  cursor:pointer;
-  overflow:hidden;
-}
-
-#progressBar{
-  height:100%;
-  width:0%;
-  background:var(--verde-fraco);
-  transition:width 0.2s linear;
-} 
-#miniPlayer{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-<header>
-  <h2>Músicas em Alta 🔥</h2>
-  <div class="playlistContent">
-    <div class="music" onclick="playMusic(0)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>A Firma Segue Lucrando</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(1)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>A Novinha Linda Que Mora Aqui do Lado</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(2)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Barbie</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(3)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Chorar Pra Quê</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(4)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Dentro do I30</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(5)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Estratégia</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(6)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Menina Se Prepara</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(7)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Motel de Motor</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(8)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Sexo na Treta - Funk</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(9)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Tô na Brasilia com o Zigão</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(10)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Vem Intencionada</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(11)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Vou Pagar Combao Vs Meia Noite Eu Sumi</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(12)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Vou pela Madrugada</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(13)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>All That Really Matters</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(14)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Bad Dreams</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(15)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Gone Gone Gone</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(16)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Hammer to the Heart</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(17)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Lose Control</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(18)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Silent Night</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(19)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>Somethin' 'Bout A Woman</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(20)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>The Door - CYRIL Remix</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(21)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>The Door</strong></div>
-    </div>
-    <div class="music" onclick="playMusic(22)">
-      <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
-      <div><strong>You're Still The One</strong></div>
-    </div>
-  </div>
-  </header>
-  background:#000;
-  display:none; /* aqui */
-  align-items:center;
-  padding:10px;
-  gap:10px;
-  z-index:50;
-  cursor:pointer;
-}  
+/* BLOQUEIO DE IMAGENS */
 img {
-  -webkit-user-drag: none;   /* evita arrastar a imagem */
-  user-drag: none;           /* padrão para outros navegadores */
-  -webkit-touch-callout: none; /* desativa menu de toque longo no iOS */
-  -moz-user-select: none;    /* desativa seleção no Firefox */
-  -ms-user-select: none;     /* desativa seleção no IE */
-  user-select: none;          /* desativa seleção no Chrome/Safari */
-}  
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 </style>
 </head>
 
 <body>
 
+<!-- SPLASH -->
 <div id="splash">
   <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
 </div>
 
+<!-- HEADER -->
+<header>
+  <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png" alt="Logo">
+  <h1>HydraMusic</h1>
+</header>
 
+<!-- SUBTÍTULO -->
+<div id="subtitle">MÚSICA DIONI BEATS</div>
 
-<main>
-
-  
+<!-- MÚSICAS -->
+<main id="musicList">
+  <!-- TODAS AS MÚSICAS -->
+  <div class="music" onclick="playMusic(0)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>A Firma Segue Lucrando</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(1)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>A Novinha Linda Que Mora Aqui do Lado</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(2)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Barbie</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(3)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Chorar Pra Quê</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(4)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Dentro do I30</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(5)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Estratégia</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(6)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Menina Se Prepara</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(7)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Motel de Motor</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(8)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Sexo na Treta - Funk</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(9)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Tô na Brasilia com o Zigão</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(10)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Vem Intencionada</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(11)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Vou Pagar Combao Vs Meia Noite Eu Sumi</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(12)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Vou pela Madrugada</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(13)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>All That Really Matters</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(14)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Bad Dreams</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(15)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Gone Gone Gone</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(16)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Hammer to the Heart</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(17)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Lose Control</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(18)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Silent Night</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(19)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>Somethin' 'Bout A Woman</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(20)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>The Door - CYRIL Remix</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(21)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>The Door</strong></div>
+  </div>
+  <div class="music" onclick="playMusic(22)">
+    <img src="https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png">
+    <div><strong>You're Still The One</strong></div>
+  </div>
 </main>
 
+<!-- MINI PLAYER -->
 <div id="miniPlayer">
   <img id="miniCover" src="">
   <div class="miniInfo">
-  <strong id="miniTitle">Selecione uma música</strong>
-  <span id="miniArtist">HydraMusic</span>
-
-  <div class="progressContainer" onclick="seek(event)">
-    <div id="progressBar"></div>
-  </div>
+    <strong id="miniTitle">Selecione uma música</strong>
+    <span id="miniArtist">HydraMusic</span>
+    <div class="progressContainer" onclick="seek(event)">
+      <div id="progressBar"></div>
+    </div>
   </div>
   <div class="controls">
-  <button onclick="prevMusic(event)">⏮</button>
-  <button onclick="togglePlay(event)" id="miniPlay">▶</button>
-  <button onclick="nextMusic(event)">⏭</button>
+    <button onclick="prevMusic(event)">⏮</button>
+    <button onclick="togglePlay(event)" id="miniPlay">▶</button>
+    <button onclick="nextMusic(event)">⏭</button>
   </div>
 </div>
 
-<audio id="audioPlayer"></audio>
-
+<!-- INSTALL -->
 <div id="installBar" style="display:none">
   <button id="btnInstall">📥 Baixar aplicativo HydraMusic</button>
 </div>
 
+<!-- SCRIPT -->
 <script>
+// ARRAY DE MÚSICAS
 const musicas = [
   "A Firma Segue Lucrando_spotdown.org.mp3",
   "A Novinha Linda Que Mora Aqui do Lado_spotdown.org.mp3",
@@ -328,9 +244,7 @@ const musicas = [
   "Tô na Brasilia com o Zigão_spotdown.org.mp3",
   "Vem Intencionada_spotdown.org.mp3",
   "Vou Pagar Combao Vs Meia Noite Eu Sumi_spotdown.org.mp3",
-  "Vou pela Madrugada_spotdown.org.mp3"
-];  
- const teddyWins = [
+  "Vou pela Madrugada_spotdown.org.mp3",
   "All That Really Matters_spotdown.org.mp3",
   "Bad Dreams_spotdown.org.mp3",
   "Gone Gone Gone_spotdown.org.mp3",
@@ -341,121 +255,83 @@ const musicas = [
   "The Door - CYRIL Remix_spotdown.org.mp3",
   "The Door_spotdown.org.mp3",
   "You're Still The One_spotdown.org.mp3"
-]; 
-setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
-
-
+];
 
 let current = 0;
-const audio = document.getElementById("audioPlayer");
+const audio = document.createElement("audio");
+document.body.appendChild(audio);
 
+setTimeout(()=>{document.getElementById("splash").style.display="none"},2000);
+
+// FUNÇÕES DE TOCAR
 function playMusic(index){
   current = index;
-
   const musicEl = document.querySelectorAll(".music")[index];
   const title = musicEl.querySelector("strong").innerText;
   const cover = musicEl.querySelector("img").src;
 
-  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" 
-    + encodeURIComponent(musicas[current]);
-
-  document.getElementById("miniPlayer").style.display = "flex";
-
+  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" + encodeURIComponent(musicas[current]);
   audio.play();
 
+  document.getElementById("miniPlayer").style.display="flex";
   document.getElementById("miniTitle").innerText = title;
   document.getElementById("miniCover").src = cover;
   document.getElementById("miniPlay").innerText = "⏸";
 }
-function playTeddy(index){
-  current = index;
 
-  const musicEl = document.querySelectorAll(".teddy .music")[index];
-  const title = musicEl.querySelector("strong").innerText;
-  const cover = musicEl.querySelector("img").src;
-
-  audio.src = "https://dionathandm.github.io/hydramusic/musicas/" 
-    + encodeURIComponent(teddyWins[current]);
-
-  document.getElementById("miniPlayer").style.display = "flex";
-
-  audio.play();
-
-  document.getElementById("miniTitle").innerText = title;
-  document.getElementById("miniCover").src = cover;
-  document.getElementById("miniPlay").innerText = "⏸";
-}  
-  function togglePlay(e){
+// TOGGLE PLAY/PAUSE
+function togglePlay(e){
   e.stopPropagation();
+  if(audio.paused){audio.play();document.getElementById("miniPlay").innerText="⏸";}
+  else{audio.pause();document.getElementById("miniPlay").innerText="▶";}
+}
 
-  if(audio.paused){
-    audio.play();
-    document.getElementById("miniPlay").innerText = "⏸";
-  } else {
-    audio.pause();
-    document.getElementById("miniPlay").innerText = "▶";
-  }
-  }
-audio.addEventListener("ended",()=>{
-  const list = musicas;
-  current = (current + 1) % list.length;
-  playMusic(current);
-});
-// Atualiza a barra conforme a música toca
-audio.addEventListener("timeupdate", () => {
-  if (audio.duration) {
-    const percent = (audio.currentTime / audio.duration) * 100;
+// BARRA DE PROGRESSO
+audio.addEventListener("timeupdate",()=>{
+  if(audio.duration){
+    const percent = (audio.currentTime/audio.duration)*100;
     document.getElementById("progressBar").style.width = percent + "%";
   }
 });
-
-// Permite clicar na barra para pular a música
-function seek(e) {
+function seek(e){
   const rect = e.currentTarget.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
-  const width = rect.width;
-  const percent = clickX / width;
+  audio.currentTime = (clickX/rect.width)*audio.duration;
+}
 
-  audio.currentTime = percent * audio.duration;
-    }
-/* PWA INSTALL */
+// NEXT/PREV
+function nextMusic(e){e.stopPropagation();current=(current+1)%musicas.length;playMusic(current);}
+function prevMusic(e){e.stopPropagation();current=(current-1+musicas.length)%musicas.length;playMusic(current);}
+
+// PWA INSTALL
 let deferredPrompt;
-window.addEventListener("beforeinstallprompt", e => {
+window.addEventListener("beforeinstallprompt", e=>{
   e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById("installBar").style.display = "block";
+  deferredPrompt=e;
+  document.getElementById("installBar").style.display="block";
 });
-document.getElementById("btnInstall").onclick = async () => {
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-  }
+document.getElementById("btnInstall").onclick=async()=>{
+  if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;}
 };
 
-/* SERVICE WORKER */
-if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>{
-    navigator.serviceWorker.register("./sw.js");
-  });
-}
-function nextMusic(e){
-  e.stopPropagation();
-  current = (current + 1) % musicas.length;
-  playMusic(current);
-}
-
-function prevMusic(e){
-  e.stopPropagation();
-  current = (current - 1 + musicas.length) % musicas.length;
-  playMusic(current);
-  }  
-</script>
-<script>
-document.querySelectorAll('.music img, #miniPlayer img, header img').forEach(img => {
-  img.addEventListener('contextmenu', e => e.preventDefault()); // bloqueia menu de toque longo
-  img.addEventListener('dragstart', e => e.preventDefault());   // bloqueia arrastar
+// BLOQUEIO DE CLIQUE DIREITO NAS IMAGENS
+document.querySelectorAll('img').forEach(img=>{
+  img.addEventListener('contextmenu',e=>e.preventDefault());
 });
+
+// NOTIFICAÇÃO DE NOVAS MÚSICAS
+if("Notification" in window){
+  if(Notification.permission!=="granted"){
+    Notification.requestPermission();
+  }
+}
+// EXEMPLO DE ALERTA DE NOVA MÚSICA
+function novaMusica(title){
+  if(Notification.permission==="granted"){
+    new Notification("Nova música disponível!",{body:title,icon:"https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"});
+  }
+}
 </script>
+
 </body>
-  </html>
+      </html>
