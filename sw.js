@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hydramusic-cache-v1';
+const CACHE_NAME = 'hydramusic-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
