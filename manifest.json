@@ -1,12 +1,10 @@
 {
   "name": "HydraMusic",
-  "short_name": "HydraMusic",
-  "description": "Ouça músicas online com o HydraMusic",
+  "short_name": "Hydra",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f3d28",
   "theme_color": "#1f6f43",
-  "orientation": "portrait",
   "icons": [
     {
       "src": "https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png",
