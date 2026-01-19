@@ -325,11 +325,27 @@ if("Notification" in window){
     Notification.requestPermission();
   }
 }
+// NOTIFICAÇÃO DE NOVAS MÚSICAS
+if("Notification" in window){
+  if(Notification.permission!=="granted"){
+    Notification.requestPermission();
+  }
+}
 // EXEMPLO DE ALERTA DE NOVA MÚSICA
 function novaMusica(title){
   if(Notification.permission==="granted"){
     new Notification("Nova música disponível!",{body:title,icon:"https://i.ibb.co/60KP16PJ/lv-0-20260117003207.png"});
   }
+}
+
+// ---------------------------
+// REGISTRO DO SERVICE WORKER
+// ---------------------------
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => console.log('Service Worker registrado!', reg))
+    .catch(err => console.log('Erro ao registrar SW:', err));
+}
 }
 </script>
 
