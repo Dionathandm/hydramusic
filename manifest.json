@@ -1,6 +1,6 @@
 {
   "name": "HydraMusic",
-  "short_name": "Hydra",
+  "short_name": "HydraMusic",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f3d28",
