@@ -172,7 +172,16 @@ function playMusic(i){
  miniPlay.innerText="⏸";
 }
 
-function togglePlay(e){e.stopPropagation();audio.paused?audio.play():audio.pause();miniPlay.innerText=audio.paused?"▶":"⏸";}
+function togglePlay(e){
+  e.stopPropagation();
+  if(audio.paused){
+    audio.play();
+    miniPlay.innerText="⏸";
+  }else{
+    audio.pause();
+    miniPlay.innerText="▶";
+  }
+}
 function nextMusic(e){e.stopPropagation();current=(current+1)%musicas.length;playMusic(current);}
 function prevMusic(e){e.stopPropagation();current=(current-1+musicas.length)%musicas.length;playMusic(current);}
 
