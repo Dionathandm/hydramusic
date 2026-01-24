@@ -159,7 +159,9 @@ musicas.forEach((m,i)=>{
 
 let current=0;
 const audio=new Audio();
-
+audio.onerror = () => {
+  alert("Erro ao carregar a música. Verifique o nome do arquivo ou se ele foi enviado para o GitHub.");
+};
 function playMusic(i){
  current=i;
  audio.src="https://dionathandm.github.io/hydramusic/musicas/"+encodeURIComponent(musicas[i]);
